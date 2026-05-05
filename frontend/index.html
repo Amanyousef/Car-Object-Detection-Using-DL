@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Object Detection</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="background-animation"></div>
+    <div class="container">
+        <header>
+            <h1><i class="fa-solid fa-car-side"></i> Vehicle Object Detection AI</h1>
+            <p>Upload an image and let our YOLOv8 model detect cars and vehicles in real-time.</p>
+        </header>
+
+        <main>
+            <div class="upload-section" id="drop-area">
+                <input type="file" id="fileElem" accept="image/*" onchange="handleFiles(this.files)">
+                <label class="upload-box" for="fileElem">
+                    <i class="fa-solid fa-cloud-arrow-up upload-icon"></i>
+                    <h3>Drag & Drop your image here</h3>
+                    <p>or click to browse from your computer</p>
+                    <span class="file-limits">Supports: JPG, PNG, WEBP</span>
+                </label>
+            </div>
+
+            <div class="loading-state hidden" id="loading-state">
+                <div class="spinner"></div>
+                <p>Analyzing image with neural networks...</p>
+            </div>
+
+            <div class="results-section hidden" id="results-section">
+                <div class="results-header">
+                    <h2>Analysis Results</h2>
+                    <button class="btn-reset" onclick="resetApp()"><i class="fa-solid fa-rotate-right"></i> Try Another</button>
+                </div>
+                
+                <div class="results-content">
+                    <div class="image-container">
+                        <img id="result-image" src="" alt="Detection Result">
+                    </div>
+                    
+                    <div class="stats-container">
+                        <div class="stat-card">
+                            <div class="stat-icon"><i class="fa-solid fa-car"></i></div>
+                            <div class="stat-info">
+                                <span class="stat-value" id="car-count">0</span>
+                                <span class="stat-label">Vehicles Detected</span>
+                            </div>
+                        </div>
+                        
+                        <div class="detections-list">
+                            <h3>Detected Objects</h3>
+                            <ul id="detections-ul">
+                                <!-- Detections will be populated here by JS -->
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        
+        <footer>
+            <p>Powered by YOLOv8 and FastAPI</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
